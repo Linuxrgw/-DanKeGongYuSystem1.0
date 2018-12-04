@@ -5,30 +5,30 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * jdbcµÄ·â×°
+ * jdbcçš„å°è£…
  * 
  * @author rgw
  */
 public class BaseDao {
 	protected Connection conn;
 
-	// ´ò¿ªÁ¬½Ó
+	// æ‰“å¼€è¿æ¥
 	public void openConnection() throws Exception {
 		try {
 
 			if (conn == null || conn.isClosed()) {
-				// 1¡¢¼ÓÔØJDBCÇı¶¯³ÌĞò
+				// 1ã€åŠ è½½JDBCé©±åŠ¨ç¨‹åº
 				Class.forName("com.mysql.jdbc.Driver");
-				// 2¡¢½¨Á¢Êı¾İ¿âÁ¬½ÓConnection
+				// 2ã€å»ºç«‹æ•°æ®åº“è¿æ¥Connection
 //				String url = "jdbc:mysql://localhost:3306/dankegongyu?useUnicode=true&characterEncoding=utf8";
 //				String userName = "root";
 //				String pwd = "12345";
 //				
-				//ÈÎ¹ãÎ°Êı¾İ¿â 
+				//ä»»å¹¿ä¼Ÿæ•°æ®åº“ 
 				String url = "jdbc:mysql://localhost:3307/dankegongyu?useUnicode=true&characterEncoding=utf8";
 				String userName = "root";
-				String pwd = "r3837514";
-				//¸üĞÂdao²ã×¢ÊÍ´Ë²¿·Ö
+				String pwd = "888888";
+				//æ›´æ–°daoå±‚æ³¨é‡Šæ­¤éƒ¨åˆ†
 				conn = DriverManager.getConnection(url, userName, pwd);
 			}
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class BaseDao {
 		}
 	}
 
-	// ¹Ø±ÕÁ¬½Ó
+	// å…³é—­è¿æ¥
 	public void closeConnection() {
 		if (conn != null) {
 			try {
@@ -47,23 +47,23 @@ public class BaseDao {
 		}
 	}
 
-	// ¿ªÆôÊÂÎñ
+	// å¼€å¯äº‹åŠ¡
 	public void beginTransaction() throws Exception {
 		openConnection();
-		conn.setAutoCommit(false); // ÊÖ¶¯Ìá½»ÊÂÎñ
+		conn.setAutoCommit(false); // æ‰‹åŠ¨æäº¤äº‹åŠ¡
 	}
 
-	// Ìá½»ÊÂÎñ
+	// æäº¤äº‹åŠ¡
 	public void commit() throws SQLException {
 		if (conn != null) {
-			conn.commit(); // ÊÖ¶¯Ìá½»ÊÂÎñ
+			conn.commit(); // æ‰‹åŠ¨æäº¤äº‹åŠ¡
 		}
 	}
 
-	// »Ø¹öÊÂÎñ
+	// å›æ»šäº‹åŠ¡
 	public void rollback() throws SQLException {
 		if (conn != null) {
-			conn.rollback(); // ÊÖ¶¯Ìá½»ÊÂÎñ
+			conn.rollback(); // æ‰‹åŠ¨æäº¤äº‹åŠ¡
 		}
 	}
 }
